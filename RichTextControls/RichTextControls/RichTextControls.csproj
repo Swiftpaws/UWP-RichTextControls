@@ -151,8 +151,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="UWP.RichTextControls 1.0.4.nuspec" />
-    <None Include="UWP.RichTextControls.1.0.4.nupkg" />
+    <None Include="UWP.RichTextControls.nuspec" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
