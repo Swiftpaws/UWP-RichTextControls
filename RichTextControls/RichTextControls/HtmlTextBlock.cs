@@ -16,8 +16,8 @@ namespace RichTextControls
         /// </summary>
         public Style BlockquoteBorderStyle
         {
-            get { return (Style)GetValue(BlockquoteBorderStyleProperty); }
-            set { SetValue(BlockquoteBorderStyleProperty, value); }
+            get => (Style)GetValue(BlockquoteBorderStyleProperty);
+            set => SetValue(BlockquoteBorderStyleProperty, value);
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace RichTextControls
         /// </summary>
         public Style PreformattedBorderStyle
         {
-            get { return (Style)GetValue(PreformattedBorderStyleProperty); }
-            set { SetValue(PreformattedBorderStyleProperty, value); }
+            get => (Style)GetValue(PreformattedBorderStyleProperty);
+            set => SetValue(PreformattedBorderStyleProperty, value);
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace RichTextControls
         /// </summary>
         public string Html
         {
-            get { return (string)GetValue(HtmlProperty); }
-            set { SetValue(HtmlProperty, value); }
+            get => (string)GetValue(HtmlProperty);
+            set => SetValue(HtmlProperty, value);
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace RichTextControls
         /// </summary>
         public IHtmlXamlGenerator CustomGenerator
         {
-            get { return (IHtmlXamlGenerator)GetValue(CustomGeneratorProperty); }
-            set { SetValue(CustomGeneratorProperty, value); }
+            get => (IHtmlXamlGenerator)GetValue(CustomGeneratorProperty);
+            set => SetValue(CustomGeneratorProperty, value);
         }
 
         /// <summary>
@@ -90,23 +90,16 @@ namespace RichTextControls
         /// <summary>
         /// The root child containing the parsed and rendered HTML.
         /// </summary>
-        public UIElement Child
-        {
-            get
-            {
-                return _rootElement;
-            }
-        }
+        public UIElement Child => _rootElement;
 
         /// <summary>
         /// Re-renders the HTML document when the property changes
         /// </summary>
         private static void OnRenderingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as HtmlTextBlock;
-            if (control == null)
+            if (!(d is HtmlTextBlock control))
                 return;
-            
+
             control.RenderDocument();
         }
 
@@ -126,7 +119,7 @@ namespace RichTextControls
 
         private void RenderDocument()
         {
-            if (_rootElement == null || String.IsNullOrEmpty(Html))
+            if (_rootElement == null || string.IsNullOrEmpty(Html))
                 return;
 
             try

@@ -119,7 +119,7 @@ namespace RichTextControls.Lexer.Grammars
                     Type = TokenType.Identifier,
                     RegExpression = new Regex("^[_A-Za-z][_A-Za-z0-9]*")
                 },
-                
+
                 // Any
                 new LexicalRule()
                 {
@@ -127,7 +127,6 @@ namespace RichTextControls.Lexer.Grammars
                     RegExpression = new Regex("^."),
                 },
             };
-
         }
 
         public string Name

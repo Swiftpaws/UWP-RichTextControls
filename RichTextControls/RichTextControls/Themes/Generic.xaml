@@ -50,5 +50,4 @@
         <Setter Property="Padding" Value="{StaticResource TextControlThemePadding}" />
         <Setter Property="Margin" Value="{StaticResource TextControlMarginThemeThickness}" />
     </Style>
-
 </ResourceDictionary>

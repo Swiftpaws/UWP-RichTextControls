@@ -88,34 +88,47 @@ namespace RichTextControls.Generators
                 case "S":
                 case "STRIKE":
                     return GenerateStrike(node);
+
                 case "IMG":
                     return GenerateInlineImage(node as IHtmlImageElement);
+
                 case "A":
                     return GenerateLink(node as IHtmlAnchorElement);
+
                 case "STRONG":
                 case "B":
                     return GenerateBold(node);
+
                 case "I":
                 case "EM":
                 case "CITE":
                     return GenerateItalic(node);
+
                 case "INS":
                 case "U":
                     return GenerateUnderline(node);
+
                 case "BR":
                     return GenerateLineBreak();
+
                 case "HR":
                     return GenerateHorizontalRule();
+
                 case "SPAN":
                     return GenerateSpan(node);
+
                 case "CODE":
                     return GenerateCode(node);
+
                 case "Q":
                     return GenerateQuote(node as IHtmlQuoteElement);
+
                 case "ABBR":
                     return GenerateAbbreviation(node as IHtmlElement);
+
                 case "MARK":
                     return GenerateMark(node);
+
                 case "SMALL":
                     return GenerateSmall(node);
                 // Technically `IFRAME` is allowed as an inline, but this is not common
@@ -141,45 +154,58 @@ namespace RichTextControls.Generators
                 case "STRIKE":
                     var strike = GenerateStrike(node);
                     return AddInlineToTextBlock(elements, strike);
+
                 case "DIV":
                     return GenerateDiv(node);
+
                 case "LI": // Treat <li> outside of a <ul> or <ol> as regular Paragraph.
                 case "P":
                     var paragraph = GenerateParagraph(node as IHtmlParagraphElement);
                     lastTextBlock = GetOrCreateLastRichTextBlock(elements);
                     lastTextBlock.Blocks.Add(paragraph);
                     return lastTextBlock;
+
                 case "IMG":
                     return GenerateImage(node as IHtmlImageElement);
+
                 case "A":
                     var link = GenerateLink(node as IHtmlAnchorElement);
                     return AddInlineToTextBlock(elements, link);
+
                 case "BLOCKQUOTE":
                     return GenerateBlockQuote(node);
+
                 case "STRONG":
                 case "B":
                     var bold = GenerateBold(node);
                     return AddInlineToTextBlock(elements, bold);
+
                 case "I":
                 case "EM":
                 case "CITE":
                     var italic = GenerateItalic(node);
                     return AddInlineToTextBlock(elements, italic);
+
                 case "INS":
                 case "U":
                     var underline = GenerateUnderline(node);
                     return AddInlineToTextBlock(elements, underline);
+
                 case "HR":
                     var rule = GenerateHorizontalRule();
                     return AddInlineToTextBlock(elements, rule, new Paragraph());
+
                 case "BR":
                     var linebreak = GenerateLineBreak();
                     return AddInlineToTextBlock(elements, linebreak);
+
                 case "SPAN":
                     var span = GenerateSpan(node);
                     return AddInlineToTextBlock(elements, span);
+
                 case "IFRAME":
                     return GenerateIframe(node as IHtmlInlineFrameElement);
+
                 case "H1":
                 case "H2":
                 case "H3":
@@ -195,27 +221,36 @@ namespace RichTextControls.Generators
                     headerParagraph.Inlines.Add(header);
                     lastTextBlock.Blocks.Add(headerParagraph);
                     return lastTextBlock;
+
                 case "UL":
                     return GenerateUL(node as IHtmlUnorderedListElement);
+
                 case "OL":
                     return GenerateOL(node as IHtmlOrderedListElement);
+
                 case "CODE":
                     var code = GenerateCode(node);
                     return AddInlineToTextBlock(elements, code);
+
                 case "PRE":
                     return GeneratePreformatted(node as IHtmlPreElement);
+
                 case "Q":
                     var quote = GenerateQuote(node as IHtmlQuoteElement);
                     return AddInlineToTextBlock(elements, quote);
+
                 case "ABBR":
                     var abbreviation = GenerateAbbreviation(node as IHtmlElement);
                     return AddInlineToTextBlock(elements, abbreviation);
+
                 case "MARK":
                     var mark = GenerateMark(node);
                     return AddInlineToTextBlock(elements, mark);
+
                 case "SMALL":
                     var small = GenerateSmall(node);
                     return AddInlineToTextBlock(elements, small);
+
                 case "#text":
                 default:
                     var plainText = GeneratePlainText(node);
@@ -313,7 +348,7 @@ namespace RichTextControls.Generators
             // Removes whitespace between tags, which HTML does not normally render.
             processedHtml = _htmlWhitespaceRegex.Replace(processedHtml, String.Empty);
             processedHtml = processedHtml.Trim();
-            // For some reason the regex leaves the returns (\r). 
+            // For some reason the regex leaves the returns (\r).
             // TODO: Figure out why and remove this extra step.
             processedHtml = processedHtml.Replace("\r", String.Empty);
 
@@ -552,47 +587,58 @@ namespace RichTextControls.Generators
                 case "python":
                     highlightLanguage = HighlightLanguage.Python;
                     break;
+
                 case "javascript":
                 case "js":
                 case "jsx":
                     highlightLanguage = HighlightLanguage.JavaScript;
                     break;
+
                 case "json":
                     highlightLanguage = HighlightLanguage.JSON;
                     break;
+
                 case "cs":
                 case "csharp":
                     highlightLanguage = HighlightLanguage.CSharp;
                     break;
+
                 case "c":
                 case "c++":
                 case "cc":
                 case "cpp":
                     highlightLanguage = HighlightLanguage.CPlusPlus;
                     break;
+
                 case "css":
                     highlightLanguage = HighlightLanguage.CSS;
                     break;
+
                 case "php":
                     highlightLanguage = HighlightLanguage.PHP;
                     break;
+
                 case "ruby":
                 case "rb":
                     highlightLanguage = HighlightLanguage.Ruby;
                     break;
+
                 case "html":
                 case "xml":
                 case "xhtml":
                 case "rss":
                     highlightLanguage = HighlightLanguage.XML;
                     break;
+
                 case "java":
                 case "jsp":
                     highlightLanguage = HighlightLanguage.Java;
                     break;
+
                 case "sql":
                     highlightLanguage = HighlightLanguage.SQL;
                     break;
+
                 default:
                     break;
             }
@@ -633,21 +679,27 @@ namespace RichTextControls.Generators
                 case "H1":
                     span.FontSize = 32;
                     break;
+
                 case "H2":
                     span.FontSize = 28;
                     break;
+
                 case "H3":
                     span.FontSize = 24;
                     break;
+
                 case "H4":
                     span.FontSize = 20;
                     break;
+
                 case "H5":
                     span.FontSize = 18;
                     break;
+
                 case "H6":
                     span.FontSize = 14;
                     break;
+
                 default:
                     span.FontSize = 14;
                     break;
@@ -784,7 +836,7 @@ namespace RichTextControls.Generators
             string clean = WebUtility.HtmlDecode(input);
             if (clean == "\0")
                 clean = "\n";
-            
+
             return clean;
         }
     }

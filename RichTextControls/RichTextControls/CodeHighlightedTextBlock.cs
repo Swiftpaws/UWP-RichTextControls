@@ -19,8 +19,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush CommentBrush
         {
-            get { return (SolidColorBrush)GetValue(CommentBrushProperty); }
-            set { SetValue(CommentBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(CommentBrushProperty);
+            set => SetValue(CommentBrushProperty, value);
         }
 
         /// <summary>
@@ -38,8 +38,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush IdentifierBrush
         {
-            get { return (SolidColorBrush)GetValue(IdentifierBrushProperty); }
-            set { SetValue(IdentifierBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(IdentifierBrushProperty);
+            set => SetValue(IdentifierBrushProperty, value);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush StringBrush
         {
-            get { return (SolidColorBrush)GetValue(StringBrushProperty); }
-            set { SetValue(StringBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(StringBrushProperty);
+            set => SetValue(StringBrushProperty, value);
         }
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush BuiltinBrush
         {
-            get { return (SolidColorBrush)GetValue(BuiltinBrushProperty); }
-            set { SetValue(BuiltinBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(BuiltinBrushProperty);
+            set => SetValue(BuiltinBrushProperty, value);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush KeywordBrush
         {
-            get { return (SolidColorBrush)GetValue(KeywordBrushProperty); }
-            set { SetValue(KeywordBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(KeywordBrushProperty);
+            set => SetValue(KeywordBrushProperty, value);
         }
 
         /// <summary>
@@ -114,8 +114,8 @@ namespace RichTextControls
         /// </summary>
         public SolidColorBrush NumberBrush
         {
-            get { return (SolidColorBrush)GetValue(NumberBrushProperty); }
-            set { SetValue(NumberBrushProperty, value); }
+            get => (SolidColorBrush)GetValue(NumberBrushProperty);
+            set => SetValue(NumberBrushProperty, value);
         }
 
         /// <summary>
@@ -133,8 +133,8 @@ namespace RichTextControls
         /// </summary>
         public HighlightLanguage HighlightLanguage
         {
-            get { return (HighlightLanguage)GetValue(HighlightLanguageProperty); }
-            set { SetValue(HighlightLanguageProperty, value); }
+            get => (HighlightLanguage)GetValue(HighlightLanguageProperty);
+            set => SetValue(HighlightLanguageProperty, value);
         }
 
         /// <summary>
@@ -152,8 +152,8 @@ namespace RichTextControls
         /// </summary>
         public string Code
         {
-            get { return (string)GetValue(CodeProperty); }
-            set { SetValue(CodeProperty, value); }
+            get => (string)GetValue(CodeProperty);
+            set => SetValue(CodeProperty, value);
         }
 
         /// <summary>
@@ -168,8 +168,7 @@ namespace RichTextControls
 
         private static void OnCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as CodeHighlightedTextBlock;
-            if (control == null)
+            if (!(d is CodeHighlightedTextBlock control))
                 return;
 
             control.RenderCode();
@@ -191,7 +190,7 @@ namespace RichTextControls
 
         private void RenderCode()
         {
-            if (_rootElement == null || String.IsNullOrEmpty(Code))
+            if (_rootElement == null || string.IsNullOrEmpty(Code))
                 return;
 
             try
@@ -203,51 +202,61 @@ namespace RichTextControls
                     case HighlightLanguage.Python:
                         grammar = new PythonGrammar();
                         break;
+
                     case HighlightLanguage.JavaScript:
                         grammar = new JavascriptGrammar();
                         break;
+
                     case HighlightLanguage.CSharp:
                         grammar = new CSharpGrammar();
                         break;
+
                     case HighlightLanguage.XML:
                         grammar = new XMLGrammar();
                         break;
+
                     case HighlightLanguage.JSON:
                         grammar = new JSONGrammar();
                         break;
+
                     case HighlightLanguage.SQL:
                         grammar = new SQLGrammar();
                         break;
+
                     case HighlightLanguage.PHP:
                         grammar = new PHPGrammar();
                         break;
+
                     case HighlightLanguage.Ruby:
                         grammar = new RubyGrammar();
                         break;
+
                     case HighlightLanguage.CPlusPlus:
                         grammar = new CPlusPlusGrammar();
                         break;
+
                     case HighlightLanguage.CSS:
                         grammar = new CSSGrammar();
                         break;
+
                     case HighlightLanguage.Java:
                         grammar = new JavaGrammar();
                         break;
+
                     default:
                         break;
                 }
-                
+
                 var textBlock = new RichTextBlock();
                 var paragraph = new Paragraph()
                 {
                     FontFamily = new FontFamily("Consolas"),
                 };
-                
+
                 if (grammar != null)
                 {
-                    Tokenizer lexer = new Tokenizer(grammar);
-
-                    StringBuilder builder = new StringBuilder();
+                    var lexer = new Tokenizer(grammar);
+                    var builder = new StringBuilder();
 
                     foreach (var token in lexer.Tokenize(Code))
                     {
@@ -302,16 +311,22 @@ namespace RichTextControls
             {
                 case TokenType.Builtins:
                     return BuiltinBrush;
+
                 case TokenType.Comment:
                     return CommentBrush;
+
                 case TokenType.Identifier:
                     return IdentifierBrush;
+
                 case TokenType.Keyword:
                     return KeywordBrush;
+
                 case TokenType.Number:
                     return NumberBrush;
+
                 case TokenType.String:
                     return StringBrush;
+
                 default:
                     return null;
             }

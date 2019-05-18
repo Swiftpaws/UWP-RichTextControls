@@ -6,10 +6,10 @@
 // without restriction, including without limitation the rights to use, copy, modify, merge,
 // publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 // to whom the Software is furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
 // PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-// Lexer implementation built from this post/source code: 
+// Lexer implementation built from this post/source code:
 // https://social.technet.microsoft.com/wiki/contents/articles/26853.winrt-c-developing-lexer-for-syntax-highlighting.aspx
 
 namespace RichTextControls.Lexer
@@ -51,12 +51,13 @@ namespace RichTextControls.Lexer
                 foreach (var rule in Grammar.Rules)
                 {
                     match = rule.RegExpression.Match(str);
-                    
+
                     if (match.Success)
                     {
                         if (match.Length == 0)
                         {
-                            throw new Exception(string.Format("Regex match length is zero. This can lead to infinite loop. Please modify your regex {0} for {1} so that it can't match character of zero length", rule.RegExpression, rule.Type));
+                            throw new Exception(
+                                $"Regex match length is zero. This can lead to infinite loop. Please modify your regex {rule.RegExpression} for {rule.Type} so that it can't match character of zero length");
                         }
 
                         yield return new Token(i, match.Length, rule.Type);

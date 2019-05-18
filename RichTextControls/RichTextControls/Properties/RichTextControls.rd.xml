@@ -28,6 +28,5 @@
   <Library Name="RichTextControls">
 
   	<!-- add directives for your library here -->
-
   </Library>
 </Directives>
