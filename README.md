@@ -1,4 +1,7 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/u8m0ml7sxhiu35sv?svg=true)](https://ci.appveyor.com/project/ryanvalentin/uwp-richtextcontrols)
+# How to install
+You can get this control from the new nuget feed [here](https://www.nuget.org/packages/UWP.RichTextControls/)
+
+
 
 # UWP-RichTextControls
 
